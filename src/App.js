@@ -20,7 +20,14 @@ class App extends React.Component {
 
     try {
       const API = process.env.REACT_APP_API_URL;
-      const photos = await axios.get(`${API}/photo`, { params: { query: this.state.searchQuery } });
+
+      const url = `${API}/photo?query=${searchQuery}`;
+      const photos = await axios.get(url);
+
+      // alternate style
+      // const photos = await axios.get(`${API}/photo`, { params: { query: this.state.searchQuery } });
+
+
       this.setState({ photos: photos.data });
     } catch (err) {
       console.error(err);
